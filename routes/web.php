@@ -22,3 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dang-xuat', [HomeController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
+
+Route::get('auth/redirect/{provider}', [HomeController::class, 'redirect']);
+Route::get('callback/{provider}', [HomeController::class, 'callback']);

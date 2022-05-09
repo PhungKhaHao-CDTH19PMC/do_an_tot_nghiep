@@ -81,6 +81,9 @@
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
                   </div>
+                  <a class="btn btn-block btn-social btn-google" href="{{ url('/auth/redirect/google') }}">
+                  <span class="fa fa-google"></span> Sign in with Google
+                </a>
                   <p class="mt-4 text-sm text-center">
                     Don't have an account?
                     <a href="#" class="text-primary text-gradient font-weight-bold">Sign up</a>
