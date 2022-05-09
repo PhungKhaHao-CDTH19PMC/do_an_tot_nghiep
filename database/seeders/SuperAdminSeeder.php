@@ -21,7 +21,7 @@ class SuperAdminSeeder extends Seeder
             'password'  => Hash::make('123456'),
             'birthday'  => '1900-01-01',
             'citizen_identification'  => '123123123',
-            'email'     => 'superadmin@example.com',
+            'email'     => '0306191292@caothang.edu.vn',
             'role_id'   => 1,
             'department_id'   => 1,
         ]);
