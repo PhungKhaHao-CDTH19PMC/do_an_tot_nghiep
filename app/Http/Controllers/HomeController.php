@@ -97,12 +97,13 @@ class HomeController extends Controller
     }
     public function forgotPassword()
     {
-        return view('modules.forgot-password.forgot-password');
+         return view('modules.forgot-password.forgot-password');
+       //  return Socialite::driver($provider)->redirect();
     }
 
     public function sendTokenForgotPassword(Request $request)
     {
-        $data = $request->all();
+       $data = $request->all();
         $now=Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
         $title_email="Lấy lại mật khẩu Elearning".' ' .$now;
         
@@ -113,11 +114,15 @@ class HomeController extends Controller
             return redirect()->back()->with('error','Email chưa được đăng kí!!');
         }
         else{
+
             $id=$user->id;
             $token_random=Str::random(40);
             $user=user::find($id);
             $user->token=$token_random;
             $user->save();
+            $now = Carbon::now();
+            $expired_time = $now->add(10, 'minute'); //thời gian hết hạn của otp
+            user::where('id', $user->id)->update([ 'expired_time' => $expired_time->toDateTimeString()]);
             //send email notification
             $to_email=$user->email;//gui den email nay 
             $link_reset_password=url('/update-new-password?email='.$to_email.'&token='.$token_random);
@@ -142,16 +147,19 @@ class HomeController extends Controller
     public function resetNewPassword(Request $request)
     {
         $data = $request->all();
-        $token_random=Str::random(40);
-        
-        $user=User::where('email',$data['email'])->where('token',$data['token'])->first();  
+        $now = Carbon::now()->toDateTimeString();
+
+        $user=User::where('email',$data['email'])->first();  
         
         if($user!=null) 
         {
+            if( $user->expired_time < $now)
+            {
+                return redirect('login')->with('error','Thời gian đã hết hạn');
+            }
             $id=$user->id;
             $reset=user::find($id);
             $reset->password=Hash::make($data['password']);
-            $reset->token=$token_random;
             $reset->save();
             return redirect('login')->with('status','Mật khẩu cập nhật thành công');
         }else{
