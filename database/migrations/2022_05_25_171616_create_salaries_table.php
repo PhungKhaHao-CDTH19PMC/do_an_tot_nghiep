@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnExpiredTimeUsers extends Migration
+class CreateSalariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddColumnExpiredTimeUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('expired_time')->nullable();
+        Schema::create('salaries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->bigInteger('salary_payable')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +29,6 @@ class AddColumnExpiredTimeUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('salaries');
     }
 }

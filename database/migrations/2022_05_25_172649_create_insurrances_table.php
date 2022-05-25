@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoaicaTable extends Migration
+class CreateInsurrancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateLoaicaTable extends Migration
      */
     public function up()
     {
-        Schema::create('loaica', function (Blueprint $table) {
+        Schema::create('insurrances', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->double('heso')->nullable();
+            $table->string('code')->nullable();
+            $table->string('user_id')->nullable();
+            $table->dateTime('issue_date')->nullable();
+            $table->string('issue_place')->nullable();
+            $table->string('examination_address')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +32,6 @@ class CreateLoaicaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaica');
+        Schema::dropIfExists('insurrances');
     }
 }

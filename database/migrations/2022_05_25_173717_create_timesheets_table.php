@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePhongbanTable extends Migration
+class CreateTimesheetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreatePhongbanTable extends Migration
      */
     public function up()
     {
-        Schema::create('phongban', function (Blueprint $table) {
+        Schema::create('timesheets', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->dateTime('in_hour')->nullable();
+            $table->dateTime('out_hour')->nullable();
+            $table->string('content')->nullable();
+            $table->bigInteger('salary_factor')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +32,6 @@ class CreatePhongbanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phongban');
+        Schema::dropIfExists('timesheets');
     }
 }

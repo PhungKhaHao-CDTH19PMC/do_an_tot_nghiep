@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUngluongTable extends Migration
+class CreateAwardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateUngluongTable extends Migration
      */
     public function up()
     {
-        Schema::create('ungluong', function (Blueprint $table) {
+        Schema::create('awards', function (Blueprint $table) {
             $table->id();
-            $table->double('sotien')->nullable();
-            $table->dateTime('ngay')->nullable();
-            $table->bigInteger('user_id')->nullable();
-            $table->string('trangthai')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->string('content')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->string('type')->nullable();
+            $table->bigInteger('salary_bonus')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +32,6 @@ class CreateUngluongTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ungluong');
+        Schema::dropIfExists('awards');
     }
 }

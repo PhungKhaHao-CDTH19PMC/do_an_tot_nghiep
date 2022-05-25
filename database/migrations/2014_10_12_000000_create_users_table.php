@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->integer('role_id');
             $table->integer('department_id');
+            $table->integer('position_id');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

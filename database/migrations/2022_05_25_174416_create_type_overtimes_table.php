@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoaicongTable extends Migration
+class CreateTypeOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLoaicongTable extends Migration
      */
     public function up()
     {
-        Schema::create('loaicong', function (Blueprint $table) {
+        Schema::create('type_overtimes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->double('heso')->nullable();
+            $table->double('salary_factor')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreateLoaicongTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaicong');
+        Schema::dropIfExists('type_overtimes');
     }
 }

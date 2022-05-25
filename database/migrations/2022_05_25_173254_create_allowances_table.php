@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBophanTable extends Migration
+class CreateAllowancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateBophanTable extends Migration
      */
     public function up()
     {
-        Schema::create('bophan', function (Blueprint $table) {
+        Schema::create('allowances', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->string('content')->nullable();
+            $table->bigInteger('money_amount')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +32,6 @@ class CreateBophanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bophan');
+        Schema::dropIfExists('allowances');
     }
 }
