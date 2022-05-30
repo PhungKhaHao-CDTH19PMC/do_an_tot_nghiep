@@ -29,3 +29,15 @@ Route::middleware('auth')->group(function () {
 
 Route::get('auth/redirect/{provider}', [HomeController::class, 'redirect']);
 Route::get('callback/{provider}', [HomeController::class, 'callback']);
+
+Route::prefix('hop-dong')->group(function() {
+    Route::name('contract.')->group(function() {
+        Route::get('/', [DashboardController::class, 'index'])->name('list');
+        Route::get('/them-moi', [DashboardController::class, 'create'])->name('create');
+        Route::post('/them-moi', [DashboardController::class, 'store'])->name('store');
+        Route::get('/cap-nhat/{id}', [DashboardController::class, 'edit'])->name('edit');
+        Route::post('/cap-nhat', [DashboardController::class, 'update'])->name('update');
+        Route::post('/xoa', [DashboardController::class, 'destroy'])->name('destroy');
+        Route::get('/load-ajax-ds-contract', [DashboardController::class, 'loadAjax'])->name('load_ajax_contract');
+    }); 
+});
