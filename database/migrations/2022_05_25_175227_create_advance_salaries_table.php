@@ -18,7 +18,6 @@ class CreateAdvanceSalariesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->double('amount_money')->nullable();
             $table->dateTime('date')->nullable();
-            $table->string('trangthai')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
